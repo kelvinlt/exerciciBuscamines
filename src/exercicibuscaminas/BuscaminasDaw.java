@@ -135,19 +135,19 @@ public class BuscaminasDaw extends javax.swing.JFrame {
                         Casella nuevaCasella = new Casella(i, true, 0);
                         listaCaselles.put(i, nuevaCasella);
                         ImageIcon mina = new ImageIcon(getClass().getResource("mina.jpg"));
-                         b = new JButton(mina); 
+                        b = new JButton(mina); 
+                        numMinas = numMinas +1;
                         System.out.println("ES UNA MINA!");
+                        
                     } else {
                         Casella nuevaCasella = new Casella(i, false, 0);
                         listaCaselles.put(i, nuevaCasella);
                         System.out.println("No es una mina...");
-                        
-                        //Image img = ImageIO.read(getClass().getResource("resources/mina.jpg"));
-                        //b.setIcon(new ImageIcon(img));
                     }
                     jPanel1.add(b);
                 }
             }
+            jTextField2.setText(Integer.toString(numMinas));
             System.out.println(listaCaselles);
         } catch (Exception e) {
             System.out.println(e);
