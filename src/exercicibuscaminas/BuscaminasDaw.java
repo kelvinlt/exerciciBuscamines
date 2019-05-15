@@ -4,6 +4,7 @@ import java.awt.Button;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
@@ -127,18 +128,16 @@ public class BuscaminasDaw extends javax.swing.JFrame {
                 GridLayout experimental = new GridLayout(numFilas, numFilas);
                 jPanel1.setLayout(experimental);
                 for (int i = 0; i < numTotalButtons; i++) {
-                    JButton b =new JButton(); 
-                    
+                    JButton b = new JButton();
                     System.out.println(i);
                     double randomNum = randomMath();
                     if (randomNum > 0.8) {
                         Casella nuevaCasella = new Casella(i, true, 0);
                         listaCaselles.put(i, nuevaCasella);
                         ImageIcon mina = new ImageIcon(getClass().getResource("mina.jpg"));
-                        b = new JButton(mina); 
-                        numMinas = numMinas +1;
+                        b = new JButton(mina);  
+                        numMinas = numMinas + 1;
                         System.out.println("ES UNA MINA!");
-                        
                     } else {
                         Casella nuevaCasella = new Casella(i, false, 0);
                         listaCaselles.put(i, nuevaCasella);
@@ -148,16 +147,14 @@ public class BuscaminasDaw extends javax.swing.JFrame {
                 }
             }
             jTextField2.setText(Integer.toString(numMinas));
-            System.out.println(listaCaselles);
+            checkCercaMinas(listaCaselles);
+            //System.out.println(listaCaselles);
         } catch (Exception e) {
             System.out.println(e);
         }
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
-
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -213,6 +210,17 @@ public class BuscaminasDaw extends javax.swing.JFrame {
         } else {
             //Sigue jugando
         }
+    }
+
+    public static void checkCercaMinas(Map mp) {
+        Iterator it = mp.entrySet().iterator();
+        int i=0;
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            System.out.println(pair.getKey() + " = " + pair.getValue());
+            it.remove();
+        }
+
     }
 
 
